@@ -2,36 +2,88 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
 
 namespace AlgorithmPlayground
 {
+    public class BenchmarkAlgorithms
+    {
+        public BenchmarkAlgorithms()
+        {
+            UnsortedArray = new int[0];
+        }
+
+        private static Random Random => new Random(95625653);
+
+        public int[] UnsortedArray;
+        public int[] LocalArray;
+
+        [Params(100, 1000, 10000)] public int ArraySize;
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            UnsortedArray = Enumerable.Range(0, ArraySize).Select(i => Random.Next(0, 999999)).ToArray();
+        }
+
+        [IterationSetup]
+        public void Iteration()
+        {
+            LocalArray = new int[UnsortedArray.Length];
+            UnsortedArray.CopyTo(LocalArray,0);
+        }
+
+        [Benchmark]
+        public int[] BinarySort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.BinaryTreeSort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+        [Benchmark]
+        public int[] InsertionSort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.InsertionSort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+        [Benchmark]
+        public int[] BubbleSort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.Bubblesort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+        [Benchmark]
+        public int[] HeapSort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.Heapsort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+        [Benchmark]
+        public int[] QuickSort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.Quicksort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+        [Benchmark]
+        public int[] MergeSort()
+        {
+            var algorithm = SortAlgorithm.Create(SortAlgorithm.SortingAlgorithm.Mergesort);
+            algorithm.Sort(LocalArray);
+            return LocalArray;
+        }
+    }
+
     class Program
     {
 
-
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            if (args.Length == 0)
-            {
-                Console.WriteLine("Usage: {0} [algorithm name]", Environment.CommandLine);
-                return;
-            }
-
-            
-            var name = args[0];
-            var algorithm = SortAlgorithm.Create(name);
-
-            var unSortedList = Enumerable.Range(0, 1000).OrderBy(i => Guid.NewGuid()).ToList();
-            for (var i = 0; i < 1000; i++)
-            {
-                var values = unSortedList.ToArray();
-                algorithm.Sort(values);
-            }
-            
-            TimeSort(unSortedList, algorithm, 100000);
-
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
+            var summary = BenchmarkRunner.Run<BenchmarkAlgorithms>();
         }
 
         private static void TimeSort(List<int> unSortedList, ISortAlgorithm algorithm, int iterations)

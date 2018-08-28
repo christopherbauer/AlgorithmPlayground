@@ -85,3 +85,6 @@ Temporary Items
 *.pidb
 *.svclog
 *.scc
+
+.vs
+packages/
