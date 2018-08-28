@@ -1,35 +1,37 @@
 ﻿using System;
+using AlgorithmPlayground.SortingAlgorithm;
 
-namespace AlgorithmPlayground
+namespace AlgorithmPlayground.Services
 {
-    public static partial class SortAlgorithm
+    public static class SortAlgorithmFactory
     {
         //Micro optimization - don't punish benchmark for algo initialization
         private static readonly QuickSortAlgorithm QuickSortAlgorithm = new QuickSortAlgorithm();
-        private static readonly BinaryTreeSortAlgorithm BinaryTreeSortAlgorithm = new BinaryTreeSortAlgorithm();
+        private static readonly BinarySearchTreeSortAlgorithm BinarySearchTreeSortAlgorithm = new BinarySearchTreeSortAlgorithm();
         private static readonly BubbleSortAlgorithm BubbleSortAlgorithm = new BubbleSortAlgorithm();
         private static readonly HeapSortAlgorithm HeapSortAlgorithm = new HeapSortAlgorithm();
         private static readonly NaiveMergeSortAlgorithm NaiveMergeSortAlgorithm = new NaiveMergeSortAlgorithm();
         private static readonly InsertionSort InsertionSort = new InsertionSort();
 
-        public static ISortAlgorithm Create(SortingAlgorithm algorithm)
+        public static ISortAlgorithm Create(SortingAlgorithmOption algorithm)
         {
             switch (algorithm)
             {
-                case SortingAlgorithm.Quicksort:
+                case SortingAlgorithmOption.Quicksort:
                     return QuickSortAlgorithm;
-                case SortingAlgorithm.BinaryTreeSort:
-                    return BinaryTreeSortAlgorithm;
-                case SortingAlgorithm.Bubblesort:
+                case SortingAlgorithmOption.BinarySearchTreeSort:
+                    return BinarySearchTreeSortAlgorithm;
+                case SortingAlgorithmOption.Bubblesort:
                     return BubbleSortAlgorithm;
-                case SortingAlgorithm.Heapsort:
+                case SortingAlgorithmOption.Heapsort:
                     return HeapSortAlgorithm;
-                case SortingAlgorithm.Mergesort:
+                case SortingAlgorithmOption.Mergesort:
                     return NaiveMergeSortAlgorithm;
-                case SortingAlgorithm.InsertionSort:
+                case SortingAlgorithmOption.InsertionSort:
                     return InsertionSort;
                 default:
-                    throw new InvalidOperationException(string.Format("{0}: Method not implemented", Enum.GetName(typeof(SortingAlgorithm),algorithm)));
+                    throw new InvalidOperationException(
+                        $"{Enum.GetName(typeof(SortingAlgorithmOption), algorithm)}: Method not implemented");
 
             }
         }

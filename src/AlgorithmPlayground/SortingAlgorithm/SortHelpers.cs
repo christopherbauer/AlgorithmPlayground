@@ -1,4 +1,4 @@
-﻿namespace AlgorithmPlayground
+﻿namespace AlgorithmPlayground.SortingAlgorithm
 {
     public static class SortHelpers
     {

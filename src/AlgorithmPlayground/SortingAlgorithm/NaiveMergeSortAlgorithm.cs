@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgorithmPlayground
+namespace AlgorithmPlayground.SortingAlgorithm
 {
     public class NaiveMergeSortAlgorithm : ISortAlgorithm
     {
