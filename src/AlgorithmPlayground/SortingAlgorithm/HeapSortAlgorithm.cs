@@ -2,52 +2,47 @@
 {
     public class HeapSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] unSortedList)
-        {
-            Heapify(unSortedList, unSortedList.Length);
+        private int _heapSize;
 
-            var end = unSortedList.Length - 1;
-            while (end > 0)
+        public void Sort(int[] arr)
+        {
+            BuildHeap(arr);
+            for (int i = arr.Length - 1; i >= 0; i--)
             {
-                SortHelpers.Swap(unSortedList, end, 0);
-                end--;
-                SiftDown(unSortedList, 0, end);
+                SortHelpers.Swap(arr, 0, i);
+                _heapSize--;
+                Heapify(arr, 0);
             }
         }
 
-        private void Heapify(int[] unSortedList, int length)
+        private void BuildHeap(int[] arr)
         {
-            var start = (length - 2)/2;
-            while (start >= 0)
+            _heapSize = arr.Length - 1;
+            for (int i = _heapSize / 2; i >= 0; i--)
             {
-                SiftDown(unSortedList, start, length);
-                start--;
+                Heapify(arr, i);
             }
         }
-
-        private void SiftDown(int[] unSortedList, int start, int length)
+        private void Heapify(int[] arr, int index)
         {
-            var root = start;
+            int left = 2 * index;
+            int right = 2 * index + 1;
+            int largest = index;
 
-            while (root*2 + 1 <= length)
+            if (left <= _heapSize && arr[left] > arr[index])
             {
-                var child = root*2 + 1;
-                var swap = root;
+                largest = left;
+            }
 
-                if (unSortedList[swap] < unSortedList[child])
-                {
-                    swap = child;
-                }
-                if (child + 1 < length && unSortedList[swap] < unSortedList[child + 1])
-                {
-                    swap = child + 1;
-                }
-                if (swap == root)
-                {
-                    return;
-                }
-                SortHelpers.Swap(unSortedList, root, swap);
-                root = swap;
+            if (right <= _heapSize && arr[right] > arr[largest])
+            {
+                largest = right;
+            }
+
+            if (largest != index)
+            {
+                SortHelpers.Swap(arr, index, largest);
+                Heapify(arr, largest);
             }
         }
     }

@@ -9,20 +9,20 @@
             Fast = true;
         }
 
-        public void Sort(int[] unSortedList)
+        public void Sort(int[] arr)
         {
             if (Fast)
             {
-                for (var i = 1; i < unSortedList.Length; i++)
+                for (var i = 1; i < arr.Length; i++)
                 {
-                    LookBackSlowly(unSortedList, i);
+                    LookBackSlowly(arr, i);
                 }
             }
             else
             {
-                for (var i = 1; i < unSortedList.Length; i++)
+                for (var i = 1; i < arr.Length; i++)
                 {
-                    LookBackQuickly(unSortedList, i);
+                    LookBackQuickly(arr, i);
                 }
             }
         }

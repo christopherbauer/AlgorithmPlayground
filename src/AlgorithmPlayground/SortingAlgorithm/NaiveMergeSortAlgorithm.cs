@@ -4,9 +4,9 @@ namespace AlgorithmPlayground.SortingAlgorithm
 {
     public class NaiveMergeSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] unSortedList)
+        public void Sort(int[] arr)
         {
-            BottomUpSort(unSortedList, new int[unSortedList.Length], unSortedList.Length);
+            BottomUpSort(arr, new int[arr.Length], arr.Length);
         }
 
         private void BottomUpMerge(int[] source, int lo, int hi, int end, int[] destination)

@@ -4,9 +4,9 @@ namespace AlgorithmPlayground.SortingAlgorithm
 {
     public class BinarySearchTreeSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] unSortedList)
+        public void Sort(int[] arr)
         {
-            TreeSort(unSortedList, unSortedList.Length);
+            TreeSort(arr, arr.Length);
         }
 
         private void TreeSort(int[] arr, int size)

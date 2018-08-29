@@ -5,9 +5,9 @@ namespace AlgorithmPlayground.SortingAlgorithm
 {
     public class QuickSortAlgorithm : ISortAlgorithm
     {
-        public void Sort(int[] unSortedList)
+        public void Sort(int[] arr)
         {
-            QuickSort(unSortedList, 0, unSortedList.Length - 1);
+            QuickSort(arr, 0, arr.Length - 1);
         }
 
         public static void QuickSort(int[] arr, int left, int right)

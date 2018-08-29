@@ -48,8 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortingAlgorithm\BinaryTreeSortTest.cs" />
-    <Compile Include="SortingAlgorithm\QuickSortTest.cs" />
+    <Compile Include="SortingAlgorithm\BubbleSortAlgorithmTest.cs" />
+    <Compile Include="SortingAlgorithm\HeapSortAlgorithmTest.cs" />
+    <Compile Include="SortingAlgorithm\BinarySearchTreeSortAlgorithmTest.cs" />
+    <Compile Include="SortingAlgorithm\InsertionSortAlgorithmTest.cs" />
+    <Compile Include="SortingAlgorithm\NaiveMergeSortAlgorithmTest.cs" />
+    <Compile Include="SortingAlgorithm\QuickSortAlgorithmTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\AlgorithmPlayground\AlgorithmPlayground.csproj">
