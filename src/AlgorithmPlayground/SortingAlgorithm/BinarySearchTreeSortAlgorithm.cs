@@ -35,7 +35,7 @@ namespace AlgorithmPlayground.SortingAlgorithm
             return new Node {Key = value};
         }
 
-        //This stores the node in a traversable data structure via references
+        //This stores the root in a traversable data structure via references
 
         private void StoreSorted(Node root, int[] arr, ref int i) {
             if (root != null)
@@ -46,21 +46,21 @@ namespace AlgorithmPlayground.SortingAlgorithm
             }
         }
 
-        private Node Insert(Node node, int key)
+        private Node Insert(Node root, int key)
         {
-            if (node == null)
+            if (root == null)
             {
                 return NewNode(key);
             }
-            if (key < node.Key)
+            if (key < root.Key)
             {
-                node.Left = Insert(node.Left, key);
+                root.Left = Insert(root.Left, key);
             }
             else
             {
-                node.Right = Insert(node.Right, key);
+                root.Right = Insert(root.Right, key);
             }
-            return node;
+            return root;
         }
     }
 }
