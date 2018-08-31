@@ -1,5 +1,9 @@
 ﻿    namespace AlgorithmPlayground.SortingAlgorithm
 {
+    /// <summary>
+    /// Complexity of O(n) for an already sorted list
+    /// Worst-Case and Average of О(n2)
+    /// </summary>
     public class BubbleSortAlgorithm : ISortAlgorithm
     {
         public void Sort(int[] arr)

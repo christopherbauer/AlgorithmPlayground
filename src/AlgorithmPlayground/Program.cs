@@ -2,10 +2,12 @@
 using System.Linq;
 using AlgorithmPlayground.Services;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Mathematics;
 using BenchmarkDotNet.Running;
 
 namespace AlgorithmPlayground
 {
+    [Outliers(OutlierMode.OnlyUpper)]
     public class BenchmarkAlgorithms
     {
         public BenchmarkAlgorithms()

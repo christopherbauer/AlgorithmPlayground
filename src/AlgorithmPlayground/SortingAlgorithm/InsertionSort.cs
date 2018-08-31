@@ -1,5 +1,8 @@
 ﻿namespace AlgorithmPlayground.SortingAlgorithm
 {
+    /// <summary>
+    /// Worst and Average Case of O(n2)
+    /// </summary>
     public class InsertionSort : ISortAlgorithm
     {
         public bool Fast { get; set; }
